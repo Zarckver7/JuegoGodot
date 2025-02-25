@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://3ew6rb03j7gb"]
+
+[ext_resource type="Script" path="res://scripts/silver_coin.gd" id="1_huntc"]
+[ext_resource type="Texture2D" uid="uid://dqm6q0i2v417" path="res://art/Rocky Roads/Objects/coin_silver.png" id="1_pvtaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udr8r"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhovq"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bhxr"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfei2"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnh8e"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxm16"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72w8r"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp21n"]
+atlas = ExtResource("1_pvtaa")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gls6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udr8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhovq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bhxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfei2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnh8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxm16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72w8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp21n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swvvs"]
+radius = 7.0
+
+[node name="silverCoin" type="Node2D"]
+script = ExtResource("1_huntc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gls6p")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_swvvs")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

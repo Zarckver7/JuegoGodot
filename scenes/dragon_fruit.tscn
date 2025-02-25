@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmillc6wne7vb"]
+
+[ext_resource type="Script" path="res://scripts/dragon_fruit.gd" id="1_2r8vi"]
+[ext_resource type="Texture2D" uid="uid://dpb1rfbgek8eo" path="res://art/Rocky Roads/Objects/DragonFruit.png" id="1_4q7h8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8v4nu"]
+radius = 5.09902
+
+[node name="DragonFruit" type="Node2D"]
+script = ExtResource("1_2r8vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4q7h8")
+
+[node name="HealthPickupBox" type="Area2D" parent="." groups=["Pickup"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthPickupBox"]
+shape = SubResource("CircleShape2D_8v4nu")
+
+[connection signal="body_entered" from="HealthPickupBox" to="." method="_on_health_pickup_box_body_entered"]
